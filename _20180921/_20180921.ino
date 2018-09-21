@@ -286,6 +286,10 @@ if (BTSerial.available() > 0) {
 //  }
  myFile = SD.open("test.txt");
  if (Sread == 'a'){
+
+  // 임시로 이렇게함....ㅈㅅ...
+  SD.remove("test.txt");
+  
    while (myFile.available()) {
      char inChar = myFile.read();
      Serial.print(inChar);
