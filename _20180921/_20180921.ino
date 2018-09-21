@@ -12,7 +12,7 @@
 
 #include <DS3231.h> //Memanggil RTC3231 Library
 #include <Wire.h>  // i2C Conection Library
-#include <LiquidCrystal_I2C.h>  //Meman ggil i2C LCD Library
+#include <LiquidCrystal_I2C.h>  //Memanggil i2C LCD Library
 #include <Button.h> //Memanggil library Push Button
 #include <SPI.h>
 #include <SD.h>
@@ -155,6 +155,9 @@ void countdown(){
     Serial.print(mm);
     myFile.print(mm);
 
+//20자리 맞추기위한 임시값
+    myFile.print("00000000");
+
    Serial.print("needle=");
    Serial.println(needle);
    lcd.setCursor(3,3);
@@ -281,10 +284,8 @@ if (BTSerial.available() > 0) {
 //    Sread = Serial.read();
 //    Serial.println(Sread);
 //  }
-
  myFile = SD.open("test.txt");
- if (Sread == 'a')
- {
+ if (Sread == 'a'){
    while (myFile.available()) {
      char inChar = myFile.read();
      Serial.print(inChar);
@@ -293,32 +294,14 @@ if (BTSerial.available() > 0) {
      //SD.remove("test.txt");
      //delay (10);
    }
-   BTSerial.print("99");
  }
- if (Sread == 'b')
- {
-   while (myFile.available()) {
-     char inChar = myFile.read();
-     Serial.print("1");
-     BTSerial.print("1");
-     Sread = 0;
-     //SD.remove("test.txt");
-     //delay (10);
-     break;
-   }
- }
- if (Sread == 'c')
- {
-   while (myFile.available()) {
-     char inChar = myFile.read();
-     Serial.print("clear");
+  if (Sread == 'c'){
      Sread = 0;
      SD.remove("test.txt");
-     break;
-   }
+     //delay (10);
  }
- 
  myFile.close();
+
 }
 
 void setupClock (void) {
