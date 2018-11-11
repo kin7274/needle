@@ -155,8 +155,7 @@ void countdown(){
     Serial.print(mm);
     myFile.print(mm);
 
-//20자리 맞추기위한 임시값
-    myFile.print("00000000");
+    myFile.print("&");
 
    Serial.print("needle=");
    Serial.println(needle);
@@ -288,7 +287,7 @@ if (BTSerial.available() > 0) {
  if (Sread == 'a'){
 
   // 임시로 이렇게함....ㅈㅅ...
-  SD.remove("test.txt");
+//  SD.remove("test.txt");
   
    while (myFile.available()) {
      char inChar = myFile.read();
